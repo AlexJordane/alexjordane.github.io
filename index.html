@@ -138,48 +138,131 @@
       margin-bottom: 24px;
     }
 
-    /* Menu de Navegação Interna */
-    .nav-bar {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      justify-content: center;
-      padding: 14px;
-      background-color: var(--bg-soft);
-      border-radius: 10px;
+    /* Menu Fixo (Sticky) + Menu Sanduíche Responsivo */
+    .sticky-nav-wrapper {
+      position: sticky;
+      top: 12px;
+      z-index: 900;
       margin-bottom: 36px;
-      border: 1px solid var(--line);
     }
 
-    .nav-link {
-      text-decoration: none;
-      font-size: 0.88rem;
-      font-weight: 600;
-      color: var(--text);
-      padding: 7px 13px;
-      border-radius: 7px;
-      background-color: #ffffff;
+    .nav-bar {
+      background-color: rgba(237, 242, 247, 0.95);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-radius: 11px;
+      padding: 12px 14px;
       border: 1px solid var(--border-strong);
-      transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
     }
 
-    .nav-link:hover {
+    .nav-top-mobile {
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .nav-mobile-title {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .menu-toggle-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background-color: #ffffff;
+      color: var(--primary);
+      border: 1px solid var(--border-strong);
+      border-radius: 8px;
+      padding: 7px 12px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s, color 0.2s;
+    }
+
+    .menu-toggle-btn:hover {
       background-color: var(--primary);
       color: #ffffff;
       border-color: var(--primary);
     }
 
-    /* Títulos de Seção */
-    .section-header {
-      margin-top: 40px;
-      margin-bottom: 18px;
-      border-bottom: 2px solid var(--bg-soft);
-      padding-bottom: 8px;
+    .nav-links-list {
       display: flex;
-      align-items: baseline;
-      justify-content: space-between;
       flex-wrap: wrap;
       gap: 8px;
+      justify-content: center;
+    }
+
+    .nav-link {
+      text-decoration: none;
+      font-size: 0.86rem;
+      font-weight: 600;
+      color: var(--text);
+      padding: 7px 12px;
+      border-radius: 7px;
+      background-color: #ffffff;
+      border: 1px solid var(--border-strong);
+      transition: background-color 0.2s, color 0.2s, border-color 0.2s, transform 0.1s;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      background-color: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+    }
+
+    @media (max-width: 780px) {
+      .nav-top-mobile {
+        display: flex;
+      }
+
+      .nav-links-list {
+        display: none;
+        flex-direction: column;
+        margin-top: 12px;
+        padding-top: 10px;
+        border-top: 1px solid var(--border-strong);
+      }
+
+      .nav-links-list.open {
+        display: flex;
+      }
+
+      .nav-link {
+        width: 100%;
+        text-align: left;
+        padding: 10px 14px;
+      }
+    }
+
+    /* Compensação de scroll para o menu fixo */
+    section[id] {
+      scroll-margin-top: 84px;
+    }
+
+    /* Títulos de Seção + Botão Topo em cada seção */
+    .section-header {
+      margin-top: 42px;
+      margin-bottom: 18px;
+      border-bottom: 2px solid var(--bg-soft);
+      padding-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .section-title-group {
+      display: flex;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 10px;
     }
 
     .section-header h2 {
@@ -188,10 +271,69 @@
       margin: 0;
     }
 
-    .section-header span {
+    .section-header span.section-subtitle {
       font-size: 0.88rem;
       color: var(--light-muted);
       font-weight: 500;
+    }
+
+    .btn-section-top {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--muted);
+      background-color: var(--bg-soft);
+      border: 1px solid var(--border-strong);
+      padding: 4px 10px;
+      border-radius: 6px;
+      transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+      white-space: nowrap;
+    }
+
+    .btn-section-top:hover {
+      background-color: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+    }
+
+    /* Botão Flutuante Voltar ao Topo */
+    .floating-top-btn {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 950;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background-color: var(--primary);
+      color: #ffffff;
+      border: none;
+      box-shadow: 0 6px 18px rgba(43, 108, 176, 0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(12px);
+      transition: opacity 0.25s ease, visibility 0.25s ease, transform 0.25s ease, background-color 0.2s ease;
+    }
+
+    .floating-top-btn.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .floating-top-btn:hover {
+      background-color: var(--primary-hover);
+      transform: translateY(-2px);
     }
 
     /* Sobre Mim e Cursos */
@@ -246,6 +388,13 @@
 
       .container {
         padding: 24px 18px;
+      }
+
+      .floating-top-btn {
+        bottom: 16px;
+        right: 16px;
+        width: 42px;
+        height: 42px;
       }
     }
 
@@ -379,7 +528,7 @@
   </style>
 </head>
 
-<body>
+<body id="topo">
 
   <div class="container">
     <!-- Cabeçalho Padrão -->
@@ -404,22 +553,35 @@
     <h1>Portal de Projetos Educacionais e Produções</h1>
     <p class="subtitulo">Materiais didáticos, animações interativas, jogos matemáticos e ferramentas computacionais</p>
 
-    <!-- Menu de Navegação Rápida -->
-    <nav class="nav-bar" aria-label="Navegação principal">
-      <a href="#sobre" class="nav-link">👤 Sobre Mim</a>
-      <a href="#cursos" class="nav-link">🎓 Cursos</a>
-      <a href="#disciplinas" class="nav-link">📚 Por Disciplina</a>
-      <a href="#temas" class="nav-link">📐 Por Temas</a>
-      <a href="#jogos" class="nav-link">🎲 Jogos Online</a>
-      <a href="#aplicativos" class="nav-link">🛠️ Aplicativos e Utilitários</a>
-      <a href="#producoes" class="nav-link">📖 Produções Técnico-Científicas</a>
-    </nav>
+    <!-- Menu Fixo (Sticky) com Sanduíche no Mobile -->
+    <div class="sticky-nav-wrapper">
+      <nav class="nav-bar" aria-label="Navegação principal">
+        <div class="nav-top-mobile">
+          <span class="nav-mobile-title">🧭 Navegar pelas Seções</span>
+          <button type="button" class="menu-toggle-btn" id="menu-toggle" aria-expanded="false" aria-controls="nav-links">
+            <span id="menu-icon">☰</span> Menu
+          </button>
+        </div>
+        <div class="nav-links-list" id="nav-links">
+          <a href="#sobre" class="nav-link">👤 Sobre Mim</a>
+          <a href="#cursos" class="nav-link">🎓 Cursos</a>
+          <a href="#disciplinas" class="nav-link">📚 Por Disciplina</a>
+          <a href="#temas" class="nav-link">📐 Por Temas</a>
+          <a href="#jogos" class="nav-link">🎲 Jogos Online</a>
+          <a href="#aplicativos" class="nav-link">🛠️ Aplicativos e Utilitários</a>
+          <a href="#producoes" class="nav-link">📖 Produções Técnico-Científicas</a>
+        </div>
+      </nav>
+    </div>
 
     <!-- 1. SOBRE MIM -->
     <section id="sobre">
       <div class="section-header">
-        <h2>Sobre Mim</h2>
-        <span>Docência, Pesquisa e Desenvolvimento Educacional</span>
+        <div class="section-title-group">
+          <h2>Sobre Mim</h2>
+          <span class="section-subtitle">Docência, Pesquisa e Desenvolvimento Educacional</span>
+        </div>
+        <a href="#topo" class="btn-section-top" title="Voltar ao topo da página">&uarr; Topo</a>
       </div>
       <div class="about-box">
         <p>
@@ -432,8 +594,6 @@
           <a href="https://github.com/AlexJordane" target="_blank" rel="noopener" class="btn btn-primary">
             🔗 Perfil no GitHub
           </a>
-          <!-- Você pode descomentar ou atualizar o link do Currículo Lattes / E-mail quando desejar -->
-          <!-- <a href="http://lattes.cnpq.br/..." target="_blank" rel="noopener" class="btn btn-secondary">📄 Currículo Lattes</a> -->
         </div>
       </div>
     </section>
@@ -441,8 +601,11 @@
     <!-- 2. SOBRE OS CURSOS -->
     <section id="cursos">
       <div class="section-header">
-        <h2>Cursos de Atuação</h2>
-        <span>Formação Inicial e Pós-Graduação no Ifes</span>
+        <div class="section-title-group">
+          <h2>Cursos de Atuação</h2>
+          <span class="section-subtitle">Formação Inicial e Pós-Graduação no Ifes</span>
+        </div>
+        <a href="#topo" class="btn-section-top" title="Voltar ao topo da página">&uarr; Topo</a>
       </div>
       <div class="grid-2">
         <div class="card">
@@ -470,8 +633,11 @@
     <!-- 3. PROJETOS POR DISCIPLINA -->
     <section id="disciplinas">
       <div class="section-header">
-        <h2>Materiais por Disciplina</h2>
-        <span>Coleções estruturadas para disciplinas da graduação e pós-graduação</span>
+        <div class="section-title-group">
+          <h2>Materiais por Disciplina</h2>
+          <span class="section-subtitle">Coleções estruturadas para disciplinas da graduação e pós-graduação</span>
+        </div>
+        <a href="#topo" class="btn-section-top" title="Voltar ao topo da página">&uarr; Topo</a>
       </div>
       <div class="grid-2">
         <div class="card">
@@ -507,8 +673,11 @@
     <!-- 4. PROJETOS POR TEMAS -->
     <section id="temas">
       <div class="section-header">
-        <h2>Projetos por Temas Matemáticos</h2>
-        <span>Roteiros investigativos, textos teóricos e simuladores interativos</span>
+        <div class="section-title-group">
+          <h2>Projetos por Temas Matemáticos</h2>
+          <span class="section-subtitle">Roteiros investigativos, textos teóricos e simuladores interativos</span>
+        </div>
+        <a href="#topo" class="btn-section-top" title="Voltar ao topo da página">&uarr; Topo</a>
       </div>
       <div class="grid-3">
         <!-- Combinação Completa -->
@@ -621,8 +790,11 @@
     <!-- 5. JOGOS ONLINE -->
     <section id="jogos">
       <div class="section-header">
-        <h2>Jogos Matemáticos Online</h2>
-        <span>Jogos de estratégia, lógica e investigação matemática</span>
+        <div class="section-title-group">
+          <h2>Jogos Matemáticos Online</h2>
+          <span class="section-subtitle">Jogos de estratégia, lógica e investigação matemática</span>
+        </div>
+        <a href="#topo" class="btn-section-top" title="Voltar ao topo da página">&uarr; Topo</a>
       </div>
       <div class="grid-2">
         <div class="card">
@@ -658,8 +830,11 @@
     <!-- 6. FERRAMENTAS E UTILITÁRIOS TÉCNICOS -->
     <section id="aplicativos">
       <div class="section-header">
-        <h2>Ferramentas e Utilitários Técnicos</h2>
-        <span>Aplicativos de apoio acadêmico, administrativo e profissional</span>
+        <div class="section-title-group">
+          <h2>Ferramentas e Utilitários Técnicos</h2>
+          <span class="section-subtitle">Aplicativos de apoio acadêmico, administrativo e profissional</span>
+        </div>
+        <a href="#topo" class="btn-section-top" title="Voltar ao topo da página">&uarr; Topo</a>
       </div>
       <div class="grid-2">
         <div class="card">
@@ -682,8 +857,11 @@
     <!-- 7. PRODUÇÕES TÉCNICO-CIENTÍFICAS -->
     <section id="producoes">
       <div class="section-header">
-        <h2>Produções Técnico-Científicas</h2>
-        <span>Produtos educacionais, artigos, livros e capítulos</span>
+        <div class="section-title-group">
+          <h2>Produções Técnico-Científicas</h2>
+          <span class="section-subtitle">Produtos educacionais, artigos, livros e capítulos</span>
+        </div>
+        <a href="#topo" class="btn-section-top" title="Voltar ao topo da página">&uarr; Topo</a>
       </div>
       <div class="grid-2">
         <div class="card">
@@ -720,6 +898,65 @@
       <img src="https://alexjordane.github.io/CC.png" alt="Licença Creative Commons CC BY-NC-ND 4.0">
     </footer>
   </div>
+
+  <!-- Botão Flutuante Voltar ao Topo -->
+  <a href="#topo" id="floating-top-btn" class="floating-top-btn" aria-label="Voltar ao topo da página" title="Voltar ao topo">
+    &uarr;
+  </a>
+
+  <script>
+    // 1. Controle do Menu Sanduíche no Mobile
+    const menuToggle = document.getElementById('menu-toggle');
+    const menuIcon = document.getElementById('menu-icon');
+    const navLinksContainer = document.getElementById('nav-links');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    menuToggle.addEventListener('click', () => {
+      const isOpen = navLinksContainer.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+      menuIcon.textContent = isOpen ? '✕' : '☰';
+    });
+
+    // Fecha o menu sanduíche automaticamente ao clicar em qualquer link
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        if (navLinksContainer.classList.contains('open')) {
+          navLinksContainer.classList.remove('open');
+          menuToggle.setAttribute('aria-expanded', 'false');
+          menuIcon.textContent = '☰';
+        }
+      });
+    });
+
+    // 2. Controle do Botão Flutuante "Voltar ao Topo" e Destaque da Seção Ativa (Scroll Spy)
+    const floatingTopBtn = document.getElementById('floating-top-btn');
+    const sections = document.querySelectorAll('section[id]');
+
+    function onScrollUpdate() {
+      // Exibe o botão flutuante após rolar 300px
+      if (window.scrollY > 300) {
+        floatingTopBtn.classList.add('visible');
+      } else {
+        floatingTopBtn.classList.remove('visible');
+      }
+
+      // Identifica a seção atual para destacar no menu fixo
+      let currentId = '';
+      const scrollPos = window.scrollY + 140;
+      sections.forEach(sec => {
+        if (scrollPos >= sec.offsetTop) {
+          currentId = sec.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === `#${currentId}`);
+      });
+    }
+
+    window.addEventListener('scroll', onScrollUpdate, { passive: true });
+    onScrollUpdate();
+  </script>
 
 </body>
 
