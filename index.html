@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prof. Alex Jordane — Portal de Projetos Educacionais e Produções</title>
+
+  <!-- KaTeX: CSS e Scripts para renderizar LaTeX -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ]
+        });"></script>
+
+  <style>
+    :root {
+      --ink: #1a202c;
+      --text: #2d3748;
+      --muted: #4a5568;
+      --light-muted: #718096;
+      --line: #e2e8f0;
+      --border-strong: #cbd5e0;
+      --bg-page: #f7fafc;
+      --bg-soft: #edf2f7;
+      --primary: #2b6cb0;
+      --primary-hover: #2c5282;
+      --teal: #319795;
+      --teal-hover: #285e61;
+      --purple: #6b46c1;
+      --amber: #d97706;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg-page);
+      color: var(--text);
+      display: flex;
+      justify-content: center;
+      padding: 36px 16px;
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    .container {
+      background: #ffffff;
+      max-width: 1040px;
+      width: 100%;
+      border-radius: 14px;
+      padding: 40px 38px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Cabeçalho Padrão */
+    .header-logos {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 28px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .header-logos img {
+      max-height: 64px;
+      width: auto;
+    }
+
+    .header-logos img.logo-destaque {
+      max-height: 96px;
+    }
+
+    .instituicao {
+      text-align: center;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+
+    .instituicao p {
+      margin: 2px 0;
+    }
+
+    .cursos {
+      text-align: center;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+
+    .cursos p {
+      margin: 2px 0;
+    }
+
+    .professor {
+      text-align: center;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+    }
+
+    .professor p {
+      margin: 2px 0;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-top: 0;
+      margin-bottom: 8px;
+      text-align: center;
+      color: var(--ink);
+      line-height: 1.3;
+    }
+
+    .subtitulo {
+      text-align: center;
+      color: var(--muted);
+      font-size: 1.1rem;
+      margin-top: 0;
+      margin-bottom: 24px;
+    }
+
+    /* Menu de Navegação Interna */
+    .nav-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      padding: 14px;
+      background-color: var(--bg-soft);
+      border-radius: 10px;
+      margin-bottom: 36px;
+      border: 1px solid var(--line);
+    }
+
+    .nav-link {
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text);
+      padding: 7px 13px;
+      border-radius: 7px;
+      background-color: #ffffff;
+      border: 1px solid var(--border-strong);
+      transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+    }
+
+    .nav-link:hover {
+      background-color: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+    }
+
+    /* Títulos de Seção */
+    .section-header {
+      margin-top: 40px;
+      margin-bottom: 18px;
+      border-bottom: 2px solid var(--bg-soft);
+      padding-bottom: 8px;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .section-header h2 {
+      font-size: 1.45rem;
+      color: var(--ink);
+      margin: 0;
+    }
+
+    .section-header span {
+      font-size: 0.88rem;
+      color: var(--light-muted);
+      font-weight: 500;
+    }
+
+    /* Sobre Mim e Cursos */
+    .about-box {
+      background-color: var(--bg-soft);
+      border-left: 4px solid var(--primary);
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin-bottom: 28px;
+    }
+
+    .about-box p {
+      margin: 0 0 12px 0;
+      font-size: 0.98rem;
+    }
+
+    .about-box p:last-child {
+      margin-bottom: 0;
+    }
+
+    .about-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    /* Grids de Cards */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    @media (max-width: 860px) {
+      .grid-3 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .grid-2,
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
+
+      .container {
+        padding: 24px 18px;
+      }
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      padding: 22px;
+      background-color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.07);
+      border-color: var(--border-strong);
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 4px 10px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+      width: fit-content;
+    }
+
+    .badge-azul {
+      background-color: #ebf8ff;
+      color: #2b6cb0;
+    }
+
+    .badge-verde {
+      background-color: #e6fffa;
+      color: #285e61;
+    }
+
+    .badge-roxo {
+      background-color: #faf5ff;
+      color: #6b46c1;
+    }
+
+    .badge-laranja {
+      background-color: #fffaf0;
+      color: #c05621;
+    }
+
+    .card h3 {
+      font-size: 1.15rem;
+      margin: 0 0 8px 0;
+      color: var(--ink);
+    }
+
+    .card p {
+      font-size: 0.93rem;
+      color: var(--muted);
+      margin: 0 0 16px 0;
+    }
+
+    .card-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: auto;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      text-decoration: none;
+      padding: 9px 14px;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      transition: background-color 0.2s, transform 0.1s;
+    }
+
+    .btn:active {
+      transform: scale(0.98);
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--primary-hover);
+    }
+
+    .btn-teal {
+      background-color: var(--teal);
+      color: #ffffff;
+    }
+
+    .btn-teal:hover {
+      background-color: var(--teal-hover);
+    }
+
+    .btn-secondary {
+      background-color: var(--bg-soft);
+      color: var(--text);
+      border: 1px solid var(--border-strong);
+    }
+
+    .btn-secondary:hover {
+      background-color: #e2e8f0;
+    }
+
+    /* Rodapé Padrão */
+    .footer {
+      margin-top: 44px;
+      padding-top: 22px;
+      border-top: 1px solid var(--line);
+      text-align: center;
+      font-size: 0.88rem;
+      color: var(--light-muted);
+    }
+
+    .footer img {
+      margin-top: 10px;
+      height: 32px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <!-- Cabeçalho Padrão -->
+    <div class="header-logos">
+      <img src="https://alexjordane.github.io/Limat.jpeg" alt="Limat" class="logo-destaque">
+      <img src="https://alexjordane.github.io/ifes.png" alt="Instituto Federal do Espírito Santo">
+      <img src="https://alexjordane.github.io/Educimat.png" alt="Educimat" class="logo-destaque">
+    </div>
+
+    <div class="instituicao">
+      <p>Instituto Federal do Espírito Santo</p>
+    </div>
+
+    <div class="cursos">
+      <p>Licenciatura em Matemática &bull; Educimat</p>
+    </div>
+
+    <div class="professor">
+      <p>Professor Alex Jordane</p>
+    </div>
+
+    <h1>Portal de Projetos Educacionais e Produções</h1>
+    <p class="subtitulo">Materiais didáticos, animações interativas, jogos matemáticos e ferramentas computacionais</p>
+
+    <!-- Menu de Navegação Rápida -->
+    <nav class="nav-bar" aria-label="Navegação principal">
+      <a href="#sobre" class="nav-link">👤 Sobre Mim</a>
+      <a href="#cursos" class="nav-link">🎓 Cursos</a>
+      <a href="#disciplinas" class="nav-link">📚 Por Disciplina</a>
+      <a href="#temas" class="nav-link">📐 Por Temas</a>
+      <a href="#jogos" class="nav-link">🎲 Jogos Online</a>
+      <a href="#aplicativos" class="nav-link">🛠️ Aplicativos e Utilitários</a>
+      <a href="#producoes" class="nav-link">📖 Produções Técnico-Científicas</a>
+    </nav>
+
+    <!-- 1. SOBRE MIM -->
+    <section id="sobre">
+      <div class="section-header">
+        <h2>Sobre Mim</h2>
+        <span>Docência, Pesquisa e Desenvolvimento Educacional</span>
+      </div>
+      <div class="about-box">
+        <p>
+          Sou o <strong>Professor Alex Jordane</strong>, docente do <strong>Instituto Federal do Espírito Santo (Ifes)</strong>, atuando no curso de <strong>Licenciatura em Matemática (Limat)</strong> e no <strong>Programa de Pós-Graduação em Educação em Ciências e Matemática (Educimat)</strong>.
+        </p>
+        <p>
+          Este espaço reúne materiais teóricos e metodológicos, roteiros investigativos, animações matemáticas interativas (Manim, GeoGebra, HTML5/JS) e aplicações desenvolvidas para apoiar o ensino e a aprendizagem de Matemática na Educação Básica, na formação inicial e continuada de professores e na pós-graduação.
+        </p>
+        <div class="about-links">
+          <a href="https://github.com/AlexJordane" target="_blank" rel="noopener" class="btn btn-primary">
+            🔗 Perfil no GitHub
+          </a>
+          <!-- Você pode descomentar ou atualizar o link do Currículo Lattes / E-mail quando desejar -->
+          <!-- <a href="http://lattes.cnpq.br/..." target="_blank" rel="noopener" class="btn btn-secondary">📄 Currículo Lattes</a> -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. SOBRE OS CURSOS -->
+    <section id="cursos">
+      <div class="section-header">
+        <h2>Cursos de Atuação</h2>
+        <span>Formação Inicial e Pós-Graduação no Ifes</span>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <div>
+            <span class="badge badge-azul">Graduação</span>
+            <h3>Licenciatura em Matemática (Limat — Ifes)</h3>
+            <p>
+              Curso voltado à formação inicial de professores de Matemática para a Educação Básica, articulando fundamentos matemáticos rigorosos, práticas de ensino, investigação matemática e tecnologias digitais.
+            </p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div>
+            <span class="badge badge-verde">Pós-Graduação (Mestrado e Doutorado)</span>
+            <h3>Programa Educimat — Ifes</h3>
+            <p>
+              Programa de Pós-Graduação em Educação em Ciências e Matemática do Ifes, dedicado à pesquisa acadêmica e ao desenvolvimento de produtos e processos educacionais voltados à melhoria do ensino.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. PROJETOS POR DISCIPLINA -->
+    <section id="disciplinas">
+      <div class="section-header">
+        <h2>Materiais por Disciplina</h2>
+        <span>Coleções estruturadas para disciplinas da graduação e pós-graduação</span>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <div>
+            <span class="badge badge-azul">Matemática / Pré-Cálculo e Ensino</span>
+            <h3>Estudo de Funções</h3>
+            <p>
+              Coleção de materiais teóricos e investigativos em LaTeX/PDF e animações em Manim abordando a Definição de Função, Função Quadrática, Função Exponencial, Função Logarítmica e Função Inversa.
+            </p>
+          </div>
+          <div class="card-actions">
+            <a href="https://alexjordane.github.io/Materiais_Funcoes/" class="btn btn-primary">Acessar Página</a>
+            <a href="https://github.com/AlexJordane/Materiais_Funcoes" target="_blank" rel="noopener" class="btn btn-secondary">Repositório</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div>
+            <span class="badge badge-azul">Tecnologias Digitais em Educação Matemática</span>
+            <h3>LogoAX — Ambiente Interativo Logo</h3>
+            <p>
+              Ambiente web de aprendizagem e programação geométrica baseado na linguagem Logo (com interpretador Python/Skulpt no navegador), editor de procedimentos (<code>aprenda</code>, <code>repita</code>) e manual em PDF.
+            </p>
+          </div>
+          <div class="card-actions">
+            <a href="https://alexjordane.github.io/LogoAX/" class="btn btn-primary">Abrir LogoAX</a>
+            <a href="https://github.com/AlexJordane/LogoAX" target="_blank" rel="noopener" class="btn btn-secondary">Repositório</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. PROJETOS POR TEMAS -->
+    <section id="temas">
+      <div class="section-header">
+        <h2>Projetos por Temas Matemáticos</h2>
+        <span>Roteiros investigativos, textos teóricos e simuladores interativos</span>
+      </div>
+      <div class="grid-3">
+        <!-- Combinação Completa -->
+        <div class="card">
+          <div>
+            <span class="badge badge-roxo">Análise Combinatória</span>
+            <h3>Combinações Completas</h3>
+            <p>
+              Material teórico e metodológico sobre problemas de seleção com repetição, equações diofantinas lineares e o Método das Estrelas e Barras (<em>Stars and Bars</em>).
+            </p>
+          </div>
+          <div class="card-actions">
+            <a href="https://alexjordane.github.io/Combinacao_completa/" class="btn btn-primary">Acessar Página</a>
+            <a href="https://github.com/AlexJordane/Combinacao_completa" target="_blank" rel="noopener" class="btn btn-secondary">GitHub</a>
+          </div>
+        </div>
+
+        <!-- Criptografia -->
+        <div class="card">
+          <div>
+            <span class="badge badge-roxo">Aritmética Modular e Funções</span>
+            <h3>Criptografia com Funções Afim</h3>
+            <p>
+              Aplicações web interativas e script Python para codificação e decodificação pela Cifra Afim $C(x) = (ax + b) \pmod{26}$, com modo manual e modo com chave oculta.
+            </p>
+          </div>
+          <div class="card-actions">
+            <a href="https://alexjordane.github.io/Criptografia/" class="btn btn-primary">Acessar Página</a>
+            <a href="https://github.com/AlexJordane/Criptografia" target="_blank" rel="noopener" class="btn btn-secondary">GitHub</a>
+          </div>
+        </div>
+
+        <!-- Divisibilidade -->
+        <div class="card">
+          <div>
+            <span class="badge badge-roxo">Teoria dos Números</span>
+            <h3>Critérios de Divisibilidade</h3>
+            <p>
+              Investigação e justificativa algébrica dos critérios de divisibilidade na base 10: procedimentos pela posição, soma de algarismos, decomposição ($7, 13, 17, 19, 23$) e soma alternada ($11$).
+            </p>
+          </div>
+          <div class="card-actions">
+            <a href="https://alexjordane.github.io/Divisibilidade/" class="btn btn-primary">Acessar Página</a>
+            <a href="https://github.com/AlexJordane/Divisibilidade" target="_blank" rel="noopener" class="btn btn-secondary">GitHub</a>
+          </div>
+        </div>
+
+        <!-- Espiral de Fibonacci e Razão Áurea -->
+        <div class="card">
+          <div>
+            <span class="badge badge-roxo">Geometria e Sequências</span>
+            <h3>Espiral de Fibonacci e Razão Áurea</h3>
+            <p>
+              Apresentações animadas interativas em Manim Slides e tarefa investigativa sobre a construção geométrica e algébrica da Razão Áurea ($\phi$) e da Espiral de Fibonacci.
+            </p>
+          </div>
+          <div class="card-actions">
+            <a href="https://alexjordane.github.io/Espiral_Fibonacci_Razao_Aurea/" class="btn btn-primary">Acessar Página</a>
+            <a href="https://github.com/AlexJordane/Espiral_Fibonacci_Razao_Aurea" target="_blank" rel="noopener" class="btn btn-secondary">GitHub</a>
+          </div>
+        </div>
+
+        <!-- Fractais -->
+        <div class="card">
+          <div>
+            <span class="badge badge-roxo">Geometria Dinâmica / GeoGebra</span>
+            <h3>Fractais de Sierpinski</h3>
+            <p>
+              Roteiro de construção do Triângulo, da Pirâmide (3D) e do Tapete de Sierpinski no GeoGebra utilizando transformações de homotetia, nivelamento de listas e iteração recursiva.
+            </p>
+          </div>
+          <div class="card-actions">
+            <a href="https://alexjordane.github.io/Fractais/" class="btn btn-primary">Acessar Página</a>
+            <a href="https://github.com/AlexJordane/Fractais" target="_blank" rel="noopener" class="btn btn-secondary">GitHub</a>
+          </div>
+        </div>
+
+        <!-- Geometria Sona -->
+        <div class="card">
+          <div>
+            <span class="badge badge-roxo">Etnomatemática e Grafos</span>
+            <h3>Geometria Sona</h3>
+            <p>
+              Explorador interativo das matrizes e trajetórias contínuas da tradição Chokwe (<em>Lusona</em>), com animação automática de ciclos e modo de construção manual ponto a ponto.
+            </p>
+          </div>
+          <div class="card-actions">
+            <a href="https://alexjordane.github.io/Geometria_Sona/" class="btn btn-primary">Abrir Explorador</a>
+            <a href="https://github.com/AlexJordane/Geometria_Sona" target="_blank" rel="noopener" class="btn btn-secondary">GitHub</a>
+          </div>
+        </div>
+
+        <!-- Produto de Inteiros -->
+        <div class="card">
+          <div>
+            <span class="badge badge-roxo">Números Inteiros / Manim Slides</span>
+            <h3>Produto de Números Inteiros</h3>
+            <p>
+              Apresentação interativa em Manim Slides que explora visualmente o significado geométrico da multiplicação de números inteiros e a regra dos sinais na reta numérica.
+            </p>
+          </div>
+          <div class="card-actions">
+            <a href="https://alexjordane.github.io/Produto_Inteiros/" class="btn btn-primary">Acessar Página</a>
+            <a href="https://github.com/AlexJordane/Produto_Inteiros" target="_blank" rel="noopener" class="btn btn-secondary">GitHub</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. JOGOS ONLINE -->
+    <section id="jogos">
+      <div class="section-header">
+        <h2>Jogos Matemáticos Online</h2>
+        <span>Jogos de estratégia, lógica e investigação matemática</span>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <div>
+            <span class="badge badge-laranja">Lógica e Invariantes</span>
+            <h3>Jogo das Cores</h3>
+            <p>
+              Desafio lógico em tabuleiro $3 \times 3$ em que cada clique inverte a cor da célula escolhida e de suas vizinhas ortogonais, ideal para investigar paridade, sistemas lineares em $\mathbb{Z}_2$ e estratégia.
+            </p>
+          </div>
+          <div class="card-actions">
+            <a href="https://alexjordane.github.io/Jogo_das_Cores/" class="btn btn-primary">Acessar Página</a>
+            <a href="https://github.com/AlexJordane/Jogo_das_Cores" target="_blank" rel="noopener" class="btn btn-secondary">Repositório</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div>
+            <span class="badge badge-laranja">Teoria dos Jogos e Estratégia</span>
+            <h3>Jogo Nim</h3>
+            <p>
+              Implementação interativa do clássico jogo matemático de estratégia e informação perfeita, permitindo investigar posições vencedoras e perdedoras e a soma binária (Nim-sum).
+            </p>
+          </div>
+          <div class="card-actions">
+            <a href="https://alexjordane.github.io/Nim/" class="btn btn-primary">Acessar Página</a>
+            <a href="https://github.com/AlexJordane/Nim" target="_blank" rel="noopener" class="btn btn-secondary">Repositório</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. FERRAMENTAS E UTILITÁRIOS TÉCNICOS -->
+    <section id="aplicativos">
+      <div class="section-header">
+        <h2>Ferramentas e Utilitários Técnicos</h2>
+        <span>Aplicativos de apoio acadêmico, administrativo e profissional</span>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <div>
+            <span class="badge badge-verde">Utilitário Acadêmico e de Seleção</span>
+            <h3>Calculadora de Tempo de Experiência</h3>
+            <p>
+              Aplicação desenvolvida em HTML/JS e em Python/Streamlit para apurar o tempo total de experiência profissional em concursos e editais de seleção, unindo automaticamente períodos concomitantes.
+            </p>
+          </div>
+          <div class="card-actions">
+            <a href="https://alexjordane.github.io/calculadora_experiencia/" class="btn btn-primary">Acessar Página</a>
+            <a href="https://alexjordane.github.io/calculadora_experiencia/Calculadora.html" class="btn btn-teal">Calculadora Web</a>
+            <a href="https://calculadoraexperiencia.streamlit.app/" target="_blank" rel="noopener" class="btn btn-secondary">Streamlit</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. PRODUÇÕES TÉCNICO-CIENTÍFICAS -->
+    <section id="producoes">
+      <div class="section-header">
+        <h2>Produções Técnico-Científicas</h2>
+        <span>Produtos educacionais, artigos, livros e capítulos</span>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <div>
+            <span class="badge badge-azul">Produtos Educacionais</span>
+            <h3>Produtos Educacionais e Materiais Didáticos</h3>
+            <p>
+              Materiais e recursos educacionais desenvolvidos no âmbito da Licenciatura em Matemática e do Programa de Pós-Graduação Educimat (Ifes), voltados para o uso em sala de aula e formação docente.
+            </p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div>
+            <span class="badge badge-verde">Publicações e Pesquisas</span>
+            <h3>Artigos, Capítulos e Orientações</h3>
+            <p>
+              Espaço reservado para listagem de artigos publicados em periódicos, capítulos de livros, trabalhos em eventos científicos e dissertações/teses orientadas.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Rodapé Padrão -->
+    <footer class="footer">
+      <p>
+        <strong>Autoria:</strong> Professor Alex Jordane, em colaboração com Inteligência Artificial (Gemini).<br>
+        Esta obra está licenciada sob uma Licença <strong>Creative Commons Atribuição-NãoComercial-SemDerivações 4.0
+          Internacional (CC BY-NC-ND 4.0)</strong>.
+      </p>
+      <p> O compartilhamento e a reprodução deste material são permitidos para fins didáticos, desde que citadas a fonte
+        e a autoria.</p>
+      <img src="https://alexjordane.github.io/CC.png" alt="Licença Creative Commons CC BY-NC-ND 4.0">
+    </footer>
+  </div>
+
+</body>
+
+</html>
